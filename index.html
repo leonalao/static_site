@@ -1,0 +1,65 @@
+<html>
+    <meta charset='utf-8'>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    
+    <title>Family Togetherness</title>
+    <body>
+        <div id="fadetext">
+            <h1 id="question">This is the question?</h1>
+        </div>
+        <!-- <i class="glyphicon glyphicon-question-sign"></i> -->
+        <a href="about.html"><i class="material-icons material-icons.md-48" id="about-icon">help_outline</i></a>
+    </body>
+
+    <script>
+        // Set bg color
+        var palette = [
+            "#53A696",
+            "#B1D95B",
+            "#F2A852",
+            "#7A76A6",
+            "#3C9BA6",
+            "#F2EFDF",
+            "#F2AB27",
+            "#DAE846",
+            "#B0CF31",
+            "#99E8F0",
+            "#FFD65D",
+            "#FFC498",
+            "#FFBAD8",
+            "#FFA375",
+            "#FCA27C",
+            "#B4D47B"
+        ]
+        var bgColor = palette[Math.floor(Math.random() * palette.length)];
+        console.log(bgColor)
+        document.body.style.backgroundColor = bgColor;
+
+        // Set question
+        var questions;
+        function readTextFile(file)
+        {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function ()
+            {
+                if(rawFile.readyState === 4)
+                {
+                    if(rawFile.status === 200 || rawFile.status == 0)
+                    {
+                        var allText = rawFile.responseText;
+                        questions = allText.split("\n");
+                    }
+                }
+            }
+            rawFile.send(null);
+        }
+        readTextFile("questions.txt");
+        var question = questions[Math.floor(Math.random() * questions.length)];
+        document.getElementById("question").textContent = question;
+    </script>
+</html>
